@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+
+	"github.com/skratchdot/open-golang/open"
 )
 
 func main() {
@@ -59,5 +61,7 @@ func fetch(url string) error {
 	}
 
 	fmt.Println(url, ": wrote to file", file.Name())
+
+	open.Run(file.Name())
 	return nil
 }
