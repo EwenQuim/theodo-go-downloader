@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
 )
 
 func main() {
@@ -36,5 +37,13 @@ func fetch(url string) error {
 	}
 
 	fmt.Println(url, ":", resp.Status)
+
+	filename := filepath.Base(url)
+	file, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(url, ": created file", file.Name())
 	return nil
 }
