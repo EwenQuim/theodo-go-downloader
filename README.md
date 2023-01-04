@@ -7,5 +7,6 @@ go run . https://media1.giphy.com/media/ytTYwIlbD1FBu/giphy.gif https://www.theo
 
 go run . https://media1.giphy.com/media/ytTYwIlbD1FBu/giphy.gif https://www.theodo.fr/hubfs/Website/Backgrounds/Theodo-banner-homepage-planet.jpg https://does-not-exists
 
-github.com/skratchdot/open-golang/open
+go run . https://media1.giphy.com/media/ytTYwIlbD1FBu/giphy.gif https://www.theodo.fr/hubfs/Website/Backgrounds/Theodo-banner-homepage-planet.jpg https://www.sample-videos.com/img/Sample-png-image-10mb.png 
 
+github.com/skratchdot/open-golang/open
