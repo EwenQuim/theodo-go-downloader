@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/skratchdot/open-golang/open"
 )
@@ -54,6 +55,11 @@ func fetch(url string) error {
 		file:   file,
 		source: resp.Body,
 	}
+
+	go func() {
+		time.Sleep(1 * time.Second)
+		fmt.Println(url, ": your download has started in the background and will be opened when complete")
+	}()
 
 	err = progress.Start()
 	if err != nil {
