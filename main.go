@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -47,14 +46,14 @@ func fetch(url string) error {
 
 	fmt.Println(url, ": created file", file.Name())
 
-	// Read the response body
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return err
+	progress := progressWriter{
+		url:    url,
+		total:  int(resp.ContentLength),
+		file:   file,
+		source: resp.Body,
 	}
 
-	// Write the response body to the file
-	_, err = file.Write(body)
+	err = progress.Start()
 	if err != nil {
 		return err
 	}
