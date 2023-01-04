@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sync"
 	"time"
 
 	"github.com/skratchdot/open-golang/open"
@@ -23,12 +24,18 @@ func main() {
 }
 
 func requests(urls []string) error {
+	var wg sync.WaitGroup
 	for _, url := range urls {
-		err := fetch(url)
-		if err != nil {
-			return fmt.Errorf("error fetching %s: %v", url, err)
-		}
+		wg.Add(1)
+		go func(url string) {
+			err := fetch(url)
+			if err != nil {
+				fmt.Printf("error fetching %s: %v", url, err)
+			}
+			wg.Done()
+		}(url)
 	}
+	wg.Wait()
 	return nil
 }
 
